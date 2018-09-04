@@ -37,13 +37,14 @@ http://138.68.228.9:8081
 
 http://138.68.228.9:8082
 
-Caso deseje acessar a máquina virtual:
-
+Caso deseje acessar a máquina virtual para testar localmente:
 
 ```
 ssh root@138.68.228.9
 password:targetso
 ```
+
+Dai, só seguir os passos descritos a seguir.
 
 # Executando os projetos na própria máquina:
 
