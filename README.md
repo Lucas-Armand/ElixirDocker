@@ -38,6 +38,9 @@ https://github.com/Lucas-Armand/ElixirDocker.git
 cd elixir-on-docker/
 docker-compose run --rm www mix deps.get
 ```
+( Para fazer um teste  ```docker-compose up --build ```
+
+
 
 # Referências:
 [Elixir first Project](https://elixir-lang.org/getting-started/mix-otp/introduction-to-mix.html#our-first-project)
