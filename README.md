@@ -27,7 +27,7 @@ password:targetso
 Primeiro é necessário baixar o repositória na sua maquina:
 
 ```
-git clone https://github.com/Lucas-Armand/ElixirChat.git
+https://github.com/Lucas-Armand/ElixirDocker.git
 ```
 
 # Criando um "Hello World" Cloud Nativo no Elixir/Docker:
