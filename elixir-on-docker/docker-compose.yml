@@ -1,0 +1,16 @@
+version: '3.1'
+
+services:
+  www:
+    build:
+      context: "./www"
+      dockerfile: "Dockerfile"
+    environment:
+      - ERLANG_COOKIE=changeme
+      - PEER_LIST=app@www-1 app@www-2
+    volumes:
+      - ./www:/home/elixir/app
+    ports:
+      - "8080:8080"
+      - "8443:8443"
+      - "4001:4001"
