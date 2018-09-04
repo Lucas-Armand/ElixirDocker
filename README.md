@@ -38,9 +38,27 @@ https://github.com/Lucas-Armand/ElixirDocker.git
 cd elixir-on-docker/
 docker-compose run --rm www mix deps.get
 ```
-( Para fazer um teste  ```docker-compose up --build ```
+( Nesse ponto é possível fazer um teste :  ```docker-compose up --build ``` )
+
+## Inciando o swarm:
+
+```
+docker swarm init < coloque aqui seu IP (Ex.: 165.227.27.41)>
+```
+( O resultado desse comando gera um token que será necessário mais adiante!)
+
+## Criando virtual machines no docker:
+
+Para facilitar a implementação e reproduzibilidade docódigo usaremos as chamdas "docker-machine" que são maquinas virtuais geradas pelo próprio docker. Então:
 
 
+```
+docker-machine create --driver virtualbox myvm1
+docker-machine create --driver virtualbox myvm2
+
+docker swarm join --token SWMTKN-1-299w4q8qco8zfede9n622zskmttmgs7zast89vbg7mncsi4vfa-ao4za4snopb11g7a3z1zbt3od 165.227.27.41:2377
+
+```
 
 # Referências:
 [Elixir first Project](https://elixir-lang.org/getting-started/mix-otp/introduction-to-mix.html#our-first-project)
