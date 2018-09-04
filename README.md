@@ -32,12 +32,11 @@ https://github.com/Lucas-Armand/ElixirDocker.git
 
 # Criando um "Hello World" Cloud Nativo no Elixir/Docker:
 
-Para iniciar um novo projeto:
+## Criando uma imagem do app no docker:
 
 ```
-mkdir chat
-cd chart
-mix new www
+cd elixir-on-docker/
+docker-compose run --rm www mix deps.get
 ```
 
 # Referências:
