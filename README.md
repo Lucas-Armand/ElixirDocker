@@ -9,7 +9,7 @@ Para facilitar a vizualização do projeto e os testes futuros eu coloquei todo 
 
 A seguir temos o um "HelloWord" feito Elixir/Docker podem ser acessados a partir de: 
 
-http://165.227.27.41:8080 (RESULTADO PARA UM SÓ NODE)
+http://138.68.228.9:8080 (RESULTADO PARA UM SÓ NODE)
 
 Para testar com dois servidores usando o "swarm" do Docker, só foi possível rodando localmente. Então, é necessário acessar ssh:
 
@@ -33,19 +33,19 @@ Se você acessar multiplas vezes verá que ID do "nó" alterna entre dois valore
 
 E o projeto de servidor chat no Elixir em multiplos "nodes" pode ser acessado por: 
 
-http://165.227.27.41:8081
+http://138.68.228.9:8081
 
-http://165.227.27.41:8082
+http://138.68.228.9:8082
 
 Caso deseje acessar a maquina virtual:
 
 
 ```
-ssh root@165.227.27.41
+ssh root@138.68.228.9
 password:targetso
 ```
 
-# Executando o projeto na própria maquina:
+# Executando os projetos na própria maquina:
 
 Primeiro é necessário baixar o repositória na sua maquina:
 
@@ -66,7 +66,7 @@ docker-compose run --rm www mix deps.get
 ## Inciando o swarm:
 
 ```
-docker swarm init < coloque aqui seu IP (Ex.: 165.227.27.41)>
+docker swarm init < coloque aqui seu IP (138.68.228.9)>
 ```
 ( O resultado desse comando gera um token que será necessário mais adiante!)
 
@@ -82,7 +82,7 @@ docker-machine create --driver virtualbox myvm1
 
 Agora, usando o token do nosso manager node, devemos iniciar os nós nas virtual machines:
 ```
-docker-machine ssh myvm1 "docker swarm join --token SWMTKN-1-299w4q8qco8zfede9n622zskmttmgs7zast89vbg7mncsi4vfa-ao4za4snopb11g7a3z1zbt3od 165.227.27.41:2377"
+docker-machine ssh myvm1 "docker swarm join --token SWMTKN-1-299w4q8qco8zfede9n622zskmttmgs7zast89vbg7mncsi4vfa-ao4za4snopb11g7a3z1zbt3od 138.68.228.9:2377"
 ```
 Nesse ponto se executarmos o comando ``` docker node ls ``` teremos um resultado como :
 ```
@@ -102,6 +102,37 @@ o código começa rodar e podemos fazer o acesso:
 curl http://localhost:8080
 ```
 
+
+# Criando um Chat Elixir:
+
+Esse projeto eu me basiei nesse tutorial :
+
+http://crowdhailer.me/2018-05-01/building-a-distributed-chatroom-with-raxx-kit/
+
+Mesmo tendo aprendido muito! Eu não consegui alterar ele, a tempo, para que funcionasse com multiplas maquinas.
+para executa-lo basta:
+
+```
+cd 
+cd ElixirDocker/watercooler/
+``` 
+
+E abra em dois terminais:
+
+```
+# terminal 1
+$ PORT=8081 SECURE_PORT=8441 iex \
+  --name node1@127.0.0.1 \
+  --erl "-config sys.config" \
+  -S mix
+
+# terminal 2
+$ PORT=8082 SECURE_PORT=8442 iex \
+  --name node2@127.0.0.1 \
+  --erl "-config sys.config" \
+  -S mix
+
+```
 
 # Referências:
 [Elixir first Project](https://elixir-lang.org/getting-started/mix-otp/introduction-to-mix.html#our-first-project)
