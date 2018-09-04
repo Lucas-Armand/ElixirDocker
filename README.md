@@ -1,13 +1,13 @@
 # ElixirDocker
-Objetivo dese projeto é criar um serviço de chat cloud native, capaz de escalar horizontalmente e que possa rodar de maneira única em mais de um servidor. Um requisito é que o servidor seja feitos em Elixir. Como esse projeto será o meu primeiro projeto em Elixir, tentarei montar esse documente em um formato passo-a-passo e construir uma lista de links relevaantes para usar como referencia em projetos futuros. Esse trabalho também será uma resposta a um desafio então tentarei realiza-lo numa design sprint de quatro dias.
+Objetivo deste projeto é criar um serviço de chat cloud native, capaz de escalar horizontalmente e que possa rodar de maneira única em mais de um servidor. Um requisito é que o servidor seja feitos em Elixir. Como esse projeto será o meu primeiro projeto em Elixir, tentarei montar esse documento em um formato passo-a-passo e construir uma lista de links relevantes para usar como referência em projetos futuros. Esse trabalho também será uma resposta a um desafio então tentarei realiza-lo numa design sprint de quatro dias.
 
 # Testando o projeto: (ATÉ 07/11)
 
-Para facilitar a vizualização do projeto e os testes futuros eu coloquei todo o código para rodar em um repositório em uma maquina virtual. 
+Para facilitar a visualização do projeto e os testes futuros eu coloquei todo o código para rodar em um repositório em uma máquina virtual. 
 
 ### "Hello World" App Cloud Elixir/Docker:
 
-A seguir temos o um "HelloWord" feito Elixir/Docker podem ser acessados a partir de: 
+A seguir temos o um "HelloWorld" feito Elixir/Docker podem ser acessados a partir de: 
 
 http://138.68.228.9:8080 (RESULTADO PARA UM SÓ NODE)
 
@@ -25,19 +25,19 @@ E então faça o acesso a porta 8080:
 curl http://localhost:8080
 ```
 
-Se você acessar multiplas vezes verá que ID do "nó" alterna entre dois valores, como na imagem abaixo: 
+Se você acessar múltiplas vezes verá que ID do "nó" alterna entre dois valores, como na imagem abaixo: 
 
 ![]()
 
 ### Chat Elixir (2 Nodes):
 
-E o projeto de servidor chat no Elixir em multiplos "nodes" pode ser acessado por: 
+E o projeto de servidor chat no Elixir em múltiplos "nodes" pode ser acessado por: 
 
 http://138.68.228.9:8081
 
 http://138.68.228.9:8082
 
-Caso deseje acessar a maquina virtual:
+Caso deseje acessar a máquina virtual:
 
 
 ```
@@ -45,9 +45,9 @@ ssh root@138.68.228.9
 password:targetso
 ```
 
-# Executando os projetos na própria maquina:
+# Executando os projetos na própria máquina:
 
-Primeiro é necessário baixar o repositória na sua maquina:
+Primeiro é necessário baixar o repositória na sua máquina:
 
 ```
 https://github.com/Lucas-Armand/ElixirDocker.git
@@ -63,7 +63,7 @@ docker-compose run --rm www mix deps.get
 ```
 ( Nesse ponto é possível fazer um teste :  ```docker-compose up --build ``` )
 
-## Inciando o swarm:
+## Iniciando o swarm:
 
 ```
 docker swarm init < coloque aqui seu IP (138.68.228.9)>
@@ -72,7 +72,7 @@ docker swarm init < coloque aqui seu IP (138.68.228.9)>
 
 ## Criando virtual machines no docker:
 
-Para facilitar a implementação e reproduzibilidade docódigo usaremos as chamdas "docker-machine" que são maquinas virtuais geradas pelo próprio docker. Então:
+Para facilitar a implementação e reprodutibilidade do código usaremos as chamadas "docker-machine" que são máquinas virtuais geradas pelo próprio docker. Então:
 
 ```
 docker-machine create --driver virtualbox myvm1
@@ -105,12 +105,12 @@ curl http://localhost:8080
 
 # Criando um Chat Elixir:
 
-Esse projeto eu me basiei nesse tutorial :
+Esse projeto eu me baseei nesse tutorial :
 
 http://crowdhailer.me/2018-05-01/building-a-distributed-chatroom-with-raxx-kit/
 
-Mesmo tendo aprendido muito! Eu não consegui alterar ele, a tempo, para que funcionasse com multiplas maquinas.
-para executa-lo basta:
+Mesmo tendo aprendido muito! Eu não consegui alterar ele, a tempo, para que funcionasse com múltiplas máquinas.
+para executá-lo basta:
 
 ```
 cd 
