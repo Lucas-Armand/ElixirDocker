@@ -7,7 +7,7 @@ Para facilitar a vizualização do projeto e os testes futuros eu coloquei todo 
 
 De maneira que os resultados do "HelloWord" Elixir/Docker podem ser acessados a partir de: 
 
-http://165.227.27.41:4000
+http://165.227.27.41:8080
 
 E o projeto de em multiplos de chat no Elixir em multiplos "nodes" pode ser acessado por: 
 
