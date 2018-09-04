@@ -1,21 +1,44 @@
 # ElixirDocker
 Objetivo dese projeto é criar um serviço de chat cloud native, capaz de escalar horizontalmente e que possa rodar de maneira única em mais de um servidor. Um requisito é que o servidor seja feitos em Elixir. Como esse projeto será o meu primeiro projeto em Elixir, tentarei montar esse documente em um formato passo-a-passo e construir uma lista de links relevaantes para usar como referencia em projetos futuros. Esse trabalho também será uma resposta a um desafio então tentarei realiza-lo numa design sprint de quatro dias.
 
-# Testando o projeto: (FUNCIONARÁ ATÉ 07/11/2018)
+# Testando o projeto: (ATÉ 07/11)
 
 Para facilitar a vizualização do projeto e os testes futuros eu coloquei todo o código para rodar em um repositório em uma maquina virtual. 
 
-De maneira que os resultados do "HelloWord" Elixir/Docker podem ser acessados a partir de: 
+### "Hello World" App Cloud Elixir/Docker:
 
-http://165.227.27.41:8080
+A seguir temos o um "HelloWord" feito Elixir/Docker podem ser acessados a partir de: 
 
-E o projeto de em multiplos de chat no Elixir em multiplos "nodes" pode ser acessado por: 
+http://165.227.27.41:8080 (RESULTADO PARA UM SÓ NODE)
+
+Para testar com dois servidores usando o "swarm" do Docker, só foi possível rodando localmente. Então, é necessário acessar ssh:
+
+```
+ssh root@138.197.222.53
+password:targetso
+```
+
+E então faça o acesso a porta 8080:
+
+
+```
+curl http://localhost:8080
+```
+
+Se você acessar multiplas vezes verá que ID do "nó" alterna entre dois valores, como na imagem abaixo: 
+
+![]()
+
+### Chat Elixir (2 Nodes):
+
+E o projeto de servidor chat no Elixir em multiplos "nodes" pode ser acessado por: 
 
 http://165.227.27.41:8081
 
 http://165.227.27.41:8082
 
 Caso deseje acessar a maquina virtual:
+
 
 ```
 ssh root@165.227.27.41
@@ -51,14 +74,34 @@ docker swarm init < coloque aqui seu IP (Ex.: 165.227.27.41)>
 
 Para facilitar a implementação e reproduzibilidade docódigo usaremos as chamdas "docker-machine" que são maquinas virtuais geradas pelo próprio docker. Então:
 
-
 ```
 docker-machine create --driver virtualbox myvm1
-docker-machine create --driver virtualbox myvm2
+```
 
-docker swarm join --token SWMTKN-1-299w4q8qco8zfede9n622zskmttmgs7zast89vbg7mncsi4vfa-ao4za4snopb11g7a3z1zbt3od 165.227.27.41:2377
+## Conectando demais nodes no swarm:
+
+Agora, usando o token do nosso manager node, devemos iniciar os nós nas virtual machines:
+```
+docker-machine ssh myvm1 "docker swarm join --token SWMTKN-1-299w4q8qco8zfede9n622zskmttmgs7zast89vbg7mncsi4vfa-ao4za4snopb11g7a3z1zbt3od 165.227.27.41:2377"
+```
+Nesse ponto se executarmos o comando ``` docker node ls ``` teremos um resultado como :
+```
+ID                            HOSTNAME                     STATUS              AVAILABILITY        MANAGER STATUS
+p2hnk9awi5oqp1zd3fimymiyy *   docker-s-2vcpu-4gb-sfo2-03   Ready               Active              Leader
+awzsljg0ya0s9v0jfrzytcvbg     myvm1                        Ready               Active                         
+```
+Por fim, se rodarmos o comando:
 
 ```
+docker stack deploy -c docker-compose.yml www
+```
+o código começa rodar e podemos fazer o acesso:
+
+
+```
+curl http://localhost:8080
+```
+
 
 # Referências:
 [Elixir first Project](https://elixir-lang.org/getting-started/mix-otp/introduction-to-mix.html#our-first-project)
