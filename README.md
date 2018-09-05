@@ -27,7 +27,7 @@ curl http://localhost:8080
 
 Se você acessar múltiplas vezes verá que ID do "nó" alterna entre dois valores, como na imagem abaixo: 
 
-![]()
+![duas maquinas](https://github.com/Lucas-Armand/ElixirDocker/blob/master/linux_result.png)
 
 ### Chat Elixir (2 Nodes):
 
